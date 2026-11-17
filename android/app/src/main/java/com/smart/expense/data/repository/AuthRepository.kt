@@ -154,34 +154,38 @@ class AuthRepository(private val context: Context) {
         return savedPass == inputPass
     }
 
+    fun resetPassword(email: String, newPass: String): Boolean {
+        val clean = email.lowercase().trim()
+        prefs.edit()
+            .putString("registered_pass_$clean", newPass)
+            .putBoolean("email_verified_$clean", true)
+            .apply()
+        return true
+    }
+
     suspend fun login(email: String, password: String): Result<UserSession> {
         val cleanEmail = email.lowercase().trim()
-        if (!isEmailVerified(cleanEmail)) {
-            return Result.failure(Exception("Email not verified! We sent a verification link to $email. Please verify your email before logging in."))
-        }
         if (!verifyPassword(cleanEmail, password)) {
             return Result.failure(Exception("Incorrect password for $email. Please try again."))
         }
 
-        return try {
+        // 1. Instant local authentication (Instant response, zero network freeze)
+        val savedName = prefs.getString("registered_name_$cleanEmail", "Smart Expense User") ?: "Smart Expense User"
+        saveSession("user_${cleanEmail.hashCode()}", savedName, email, "offline_jwt_token", "en")
+
+        // 2. Non-blocking backend check (fails gracefully if no server running)
+        try {
             val api = NetworkClient.getApiService(context)
             val response = api.login(LoginRequest(email, password))
-
             if (response.isSuccessful && response.body()?.success == true) {
                 val data = response.body()!!.data!!
                 saveSession(data._id, data.name, data.email, data.token, data.preferredLanguage)
-                Result.success(_currentUser.value)
-            } else {
-                // If backend is unreachable or returns error, provide login for demo or registered users
-                val savedName = prefs.getString("registered_name_$cleanEmail", "Smart Expense User") ?: "Smart Expense User"
-                saveSession("user_${cleanEmail.hashCode()}", savedName, email, "demo_jwt_offline_token", "en")
-                Result.success(_currentUser.value)
             }
-        } catch (e: Exception) {
-            val savedName = prefs.getString("registered_name_$cleanEmail", "Smart Expense User") ?: "Smart Expense User"
-            saveSession("user_${cleanEmail.hashCode()}", savedName, email, "demo_jwt_offline_token", "en")
-            Result.success(_currentUser.value)
+        } catch (_: Exception) {
+            // Local offline mode active - zero delay
         }
+
+        return Result.success(_currentUser.value)
     }
 
     suspend fun register(name: String, email: String, pass: String, lang: String): Result<UserSession> {
@@ -190,36 +194,19 @@ class AuthRepository(private val context: Context) {
             return Result.failure(Exception("An account with email $email already exists! Please sign in."))
         }
         registerPendingUser(name, email, pass)
-        return try {
+        verifyEmail(cleanEmail) // Auto-verify on device so users are never locked out
+
+        // Instant local session creation (Zero wait time)
+        saveSession("user_${cleanEmail.hashCode()}", name, email, "offline_jwt_token", lang)
+
+        try {
             val api = NetworkClient.getApiService(context)
-            val response = api.register(RegisterRequest(name, email, pass, lang))
-            if (response.isSuccessful && response.body()?.success == false) {
-                return Result.failure(Exception(response.body()?.message ?: "Account already exists"))
-            }
-            Result.success(
-                UserSession(
-                    userId = "user_${cleanEmail.hashCode()}",
-                    name = name,
-                    email = email,
-                    token = "pending_token",
-                    preferredLanguage = lang,
-                    isEmailVerified = false,
-                    isLoggedIn = false
-                )
-            )
-        } catch (e: Exception) {
-            Result.success(
-                UserSession(
-                    userId = "user_${cleanEmail.hashCode()}",
-                    name = name,
-                    email = email,
-                    token = "pending_token",
-                    preferredLanguage = lang,
-                    isEmailVerified = false,
-                    isLoggedIn = false
-                )
-            )
+            api.register(RegisterRequest(name, email, pass, lang))
+        } catch (_: Exception) {
+            // Local offline registration active
         }
+
+        return Result.success(_currentUser.value)
     }
 
     fun setPreferredLanguage(langCode: String) {

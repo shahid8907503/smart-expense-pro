@@ -81,5 +81,64 @@ object GmailSmtpDispatcher {
             }
         }
     }
+
+    suspend fun sendPasswordResetEmail(recipientEmail: String, resetCode: String): Result<Boolean> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val props = Properties().apply {
+                    put("mail.smtp.auth", "true")
+                    put("mail.smtp.starttls.enable", "true")
+                    put("mail.smtp.host", SMTP_HOST)
+                    put("mail.smtp.port", SMTP_PORT)
+                    put("mail.smtp.ssl.protocols", "TLSv1.2")
+                    put("mail.smtp.connectiontimeout", "7000")
+                    put("mail.smtp.timeout", "7000")
+                }
+
+                val session = Session.getInstance(props, object : Authenticator() {
+                    override fun getPasswordAuthentication(): PasswordAuthentication {
+                        return PasswordAuthentication(SENDER_EMAIL, APP_PASSWORD)
+                    }
+                })
+
+                val message = MimeMessage(session).apply {
+                    setFrom(InternetAddress(SENDER_EMAIL, "SmartExpense Security"))
+                    setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail))
+                    subject = "SmartExpense — Password Reset Code: $resetCode"
+
+                    val htmlContent = """
+                        <div style="font-family: Arial, sans-serif; max-width: 520px; margin: auto; padding: 24px; border: 1px solid #dcdcdc; border-radius: 14px; background: #ffffff;">
+                            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                                <h2 style="color: #2563eb; margin: 0;">SmartExpense Password Reset</h2>
+                            </div>
+                            <p style="font-size: 15px; color: #333333; line-height: 22px;">Hello,</p>
+                            <p style="font-size: 15px; color: #333333; line-height: 22px;">
+                                We received a request to reset the password for your <strong>SmartExpense</strong> account.
+                                Enter the 6-digit security code below in the app to set a new password:
+                            </p>
+                            <div style="background: #eff6ff; border: 2px dashed #2563eb; border-radius: 10px; padding: 20px; text-align: center; margin: 24px 0;">
+                                <span style="font-size: 34px; font-weight: bold; letter-spacing: 8px; color: #1d4ed8; font-family: monospace;">$resetCode</span>
+                            </div>
+                            <p style="font-size: 13.5px; color: #555555; line-height: 20px;">
+                                This code is valid for 15 minutes. If you did not request a password reset, you can safely ignore this email.
+                            </p>
+                            <hr style="border: none; border-top: 1px solid #eeeeee; margin: 24px 0;" />
+                            <p style="font-size: 11.5px; color: #888888; margin: 0;">
+                                SmartExpense Security Engine · 100% Private & Protected
+                            </p>
+                        </div>
+                    """.trimIndent()
+
+                    setContent(htmlContent, "text/html; charset=utf-8")
+                }
+
+                Transport.send(message)
+                Result.success(true)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Result.failure(e)
+            }
+        }
+    }
 }
 

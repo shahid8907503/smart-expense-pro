@@ -197,7 +197,9 @@ fun RegisterScreen(
                     val result = authRepository.register(name.trim(), email.trim(), password, selectedLang)
                     isLoading = false
                     if (result.isSuccess) {
-                        showEmailVerifyDialog = true
+                        val session = result.getOrNull()!!
+                        expenseRepository.seedSampleDataIfEmpty(session.userId)
+                        onNavigateToHome()
                     } else {
                         errorMessage = result.exceptionOrNull()?.message ?: "Registration failed"
                     }

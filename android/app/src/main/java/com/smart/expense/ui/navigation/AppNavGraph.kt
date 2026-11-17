@@ -150,6 +150,7 @@ fun AppNavGraph(
 
             composable(Screen.ForgotPassword.route) {
                 ForgotPasswordScreen(
+                    authRepository = authRepository,
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
