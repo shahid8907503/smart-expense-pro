@@ -230,19 +230,35 @@ fun HomeScreen(
             AdBannerView()
         },
         floatingActionButton = {
-            // Starling Mint Floating Action Button
-            FloatingActionButton(
-                onClick = onNavigateToAddManual,
-                containerColor = StarlingMintAccent,
-                contentColor = Color(0xFF021B1F),
-                shape = CircleShape,
-                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp)
+            // Playful Neo-Tactile Action Button (Electric Lime with Forest Ink)
+            Box(
+                modifier = Modifier.padding(bottom = 8.dp, end = 4.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add Transaction",
-                    modifier = Modifier.size(28.dp)
+                // Tactile physical offset shadow
+                Box(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .offset(x = 3.dp, y = 3.dp)
+                        .clip(CircleShape)
+                        .background(PaletteForestInk)
                 )
+                FloatingActionButton(
+                    onClick = onNavigateToAddManual,
+                    containerColor = PaletteElectricLime,
+                    contentColor = PaletteForestInk,
+                    shape = CircleShape,
+                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 0.dp),
+                    modifier = Modifier
+                        .size(56.dp)
+                        .border(1.5.dp, PaletteForestInk, CircleShape)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add Transaction",
+                        modifier = Modifier.size(28.dp),
+                        tint = PaletteForestInk
+                    )
+                }
             }
         }
     ) { innerPadding ->
@@ -266,20 +282,14 @@ fun HomeScreen(
                     Column {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                text = "$timeGreeting, ",
+                                text = "Hey, $timeGreeting!",
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Text(
-                                text = user.name.split(" ").firstOrNull() ?: "Shahid",
-                                style = MaterialTheme.typography.bodyMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onBackground
+                                color = PaletteMutedText
                             )
                         }
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = monthName,
+                            text = "Let's track your money.",
                             style = MaterialTheme.typography.headlineSmall.copy(
                                 fontWeight = FontWeight.ExtraBold,
                                 letterSpacing = (-0.5).sp
@@ -426,36 +436,32 @@ fun HomeScreen(
             // 4. INTELLIGENT VOICE ENTRY HERO INTERACTION
             // =================================================================
             item {
-                Card(
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(22.dp))
-                        .clickable { showListeningDialog = true },
-                    shape = RoundedCornerShape(22.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+                        .padding(bottom = 4.dp)
                 ) {
-                    val isDarkTheme = isSystemInDarkTheme()
-                    val voiceBannerColors = if (isDarkTheme) {
-                        listOf(
-                            Color(0xFF063B44), // Starling Dark Sea Pine
-                            Color(0xFF021B1F)  // Abyssal Pine
-                        )
-                    } else {
-                        listOf(
-                            Color(0xFF0A4753), // Starling Oceanic Pine
-                            Color(0xFF03282E)  // Deep Oceanic Pine
-                        )
-                    }
-
+                    // Tactile back-shadow
                     Box(
                         modifier = Modifier
+                            .matchParentSize()
+                            .offset(x = 3.dp, y = 3.dp)
+                            .clip(RoundedCornerShape(22.dp))
+                            .background(if (isSystemInDarkTheme()) Color(0xFF0D0F0C) else Color(0x33242923))
+                    )
+
+                    Surface(
+                        modifier = Modifier
                             .fillMaxWidth()
-                            .background(Brush.horizontalGradient(voiceBannerColors))
-                            .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(22.dp))
-                            .padding(horizontal = 20.dp, vertical = 18.dp)
+                            .clickable { showListeningDialog = true },
+                        shape = RoundedCornerShape(22.dp),
+                        color = PaletteForestInk,
+                        border = androidx.compose.foundation.BorderStroke(1.5.dp, PaletteForestInk)
                     ) {
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 20.dp, vertical = 18.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
@@ -465,7 +471,7 @@ fun HomeScreen(
                                         modifier = Modifier
                                             .size(7.dp)
                                             .clip(CircleShape)
-                                            .background(FintechEmeraldLight)
+                                            .background(PaletteElectricLime)
                                     )
                                     Spacer(modifier = Modifier.width(6.dp))
                                     Text(
@@ -475,40 +481,40 @@ fun HomeScreen(
                                             letterSpacing = 1.2.sp,
                                             fontWeight = FontWeight.ExtraBold
                                         ),
-                                        color = Color(0xFFC7D2FE)
+                                        color = PaletteElectricLime
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = "Log Transactions with Voice",
                                     style = MaterialTheme.typography.titleLarge.copy(
-                                        fontSize = 19.sp,
+                                        fontSize = 18.5.sp,
                                         fontWeight = FontWeight.Bold
                                     ),
-                                    color = Color.White
+                                    color = PaletteWarmPaper
                                 )
                                 Spacer(modifier = Modifier.height(3.dp))
                                 Text(
                                     text = "Say \"Spent ₹250 on lunch\" in English, Hindi, or Telugu",
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = Color.White.copy(alpha = 0.85f)
+                                    color = Color(0xFFA6ABA0)
                                 )
                             }
 
-                            // Glowing Microphone Orb
+                            // Tactile Microphone Orb (Electric Lime)
                             Box(
                                 modifier = Modifier
-                                    .size(54.dp)
+                                    .size(52.dp)
                                     .clip(CircleShape)
-                                    .background(Color.White.copy(alpha = 0.2f))
-                                    .border(1.5.dp, Color.White.copy(alpha = 0.4f), CircleShape),
+                                    .background(PaletteElectricLime)
+                                    .border(1.5.dp, PaletteForestInk, CircleShape),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Mic,
                                     contentDescription = "Voice microphone",
-                                    tint = Color.White,
-                                    modifier = Modifier.size(28.dp)
+                                    tint = PaletteForestInk,
+                                    modifier = Modifier.size(26.dp)
                                 )
                             }
                         }
@@ -549,28 +555,32 @@ fun HomeScreen(
                     QuickActionPill(
                         title = "Bank SMS",
                         icon = Icons.Default.MarkChatUnread,
-                        iconTint = FintechCyan,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteMintMist,
                         modifier = Modifier.weight(1f),
                         onClick = { showAutoTrackDialog = true }
                     )
                     QuickActionPill(
                         title = "Split Bill",
                         icon = Icons.Default.Group,
-                        iconTint = FintechVioletLight,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteLavender,
                         modifier = Modifier.weight(1f),
                         onClick = { showSplitBillDialog = true }
                     )
                     QuickActionPill(
                         title = "Savings",
                         icon = Icons.Default.Savings,
-                        iconTint = FintechEmerald,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteElectricLime,
                         modifier = Modifier.weight(1f),
                         onClick = { showSavingsGoalsDialog = true }
                     )
                     QuickActionPill(
                         title = "Calendar",
                         icon = Icons.Default.CalendarMonth,
-                        iconTint = FintechAmber,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteCoralPop,
                         modifier = Modifier.weight(1f),
                         onClick = { showCalendarDialog = true }
                     )
@@ -585,21 +595,24 @@ fun HomeScreen(
                     QuickActionPill(
                         title = "Recurring",
                         icon = Icons.Default.Autorenew,
-                        iconTint = Color(0xFF60A5FA),
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteMintMist,
                         modifier = Modifier.weight(1f),
                         onClick = { showRecurringDialog = true }
                     )
                     QuickActionPill(
                         title = "Debts/Loans",
                         icon = Icons.Default.AccountBalanceWallet,
-                        iconTint = Color(0xFFF472B6),
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteCoralPop,
                         modifier = Modifier.weight(1f),
                         onClick = { showDebtTracker = true }
                     )
                     QuickActionPill(
                         title = "Export CSV",
                         icon = Icons.Default.FileDownload,
-                        iconTint = FintechEmeraldLight,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteElectricLime,
                         modifier = Modifier.weight(1f),
                         onClick = {
                             DataExporter.exportTransactionsToCsv(
@@ -613,7 +626,8 @@ fun HomeScreen(
                     QuickActionPill(
                         title = "Budgets",
                         icon = Icons.Default.AccountBalanceWallet,
-                        iconTint = FintechElectricViolet,
+                        iconTint = PaletteForestInk,
+                        badgeBg = PaletteLavender,
                         modifier = Modifier.weight(1f),
                         onClick = onNavigateToBudgets
                     )
@@ -815,13 +829,14 @@ fun HomeScreen(
 }
 
 /**
- * Sleek Linear-style Quick Action Pill
+ * Playful Neo-Tactile Quick Action Pill
  */
 @Composable
 private fun QuickActionPill(
     title: String,
     icon: androidx.compose.ui.graphics.vector.ImageVector,
-    iconTint: Color,
+    iconTint: Color = PaletteForestInk,
+    badgeBg: Color = PaletteMintMist,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -829,8 +844,8 @@ private fun QuickActionPill(
         onClick = onClick,
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
-        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = modifier.height(76.dp)
+        border = androidx.compose.foundation.BorderStroke(1.2.dp, PaletteBorder),
+        modifier = modifier.height(78.dp)
     ) {
         Column(
             modifier = Modifier
@@ -842,22 +857,23 @@ private fun QuickActionPill(
             Box(
                 modifier = Modifier
                     .size(34.dp)
-                    .clip(CircleShape)
-                    .background(iconTint.copy(alpha = 0.14f)),
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(badgeBg)
+                    .border(1.dp, PaletteForestInk.copy(alpha = 0.15f), RoundedCornerShape(10.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = icon,
                     contentDescription = title,
                     tint = iconTint,
-                    modifier = Modifier.size(19.dp)
+                    modifier = Modifier.size(18.dp)
                 )
             }
             Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = title,
                 fontSize = 11.sp,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 1
             )

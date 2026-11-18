@@ -34,10 +34,7 @@ import com.smart.expense.ui.components.GdprPrivacyDialog
 import com.smart.expense.ui.components.GoogleAuthSetupDialog
 import com.smart.expense.ui.components.PinSetupDialog
 import com.smart.expense.ui.components.TwoFactorAuthDialog
-import com.smart.expense.ui.theme.EmeraldAccent
-import com.smart.expense.ui.theme.ExpenseMutedRed
-import com.smart.expense.ui.theme.ForestGreenContainer
-import com.smart.expense.ui.theme.ForestGreenPrimary
+import com.smart.expense.ui.theme.*
 import com.smart.expense.util.DataExporter
 import kotlinx.coroutines.launch
 

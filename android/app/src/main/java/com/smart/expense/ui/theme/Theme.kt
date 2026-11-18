@@ -1,4 +1,3 @@
-
 package com.smart.expense.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -8,71 +7,65 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// =========================================================
-// STARLING BANK × WEALTHSIMPLE BENTO NEOBANK THEME
-// Deep Oceanic Pine Dark | Crisp Porcelain Bento Light
-// =========================================================
+// =========================================================================
+// PLAYFUL FINTECH × NEO-TACTILE × EDITORIAL MINIMALISM
+// Warm Paper Canvas | Forest Ink Type | Electric Lime Tactile Highlights
+// =========================================================================
 
 private val DarkColorScheme = darkColorScheme(
-    // Primary: Starling Mint Electric (matches Starling neon active indicators)
-    primary = StarlingMintAccent,
-    onPrimary = Color(0xFF021B1F),
-    primaryContainer = Color(0xFF0B4E5A),
-    onPrimaryContainer = StarlingMintAccent,
+    primary = PaletteElectricLime,
+    onPrimary = PaletteForestInk,
+    primaryContainer = DarkPaperSurface,
+    onPrimaryContainer = PaletteElectricLime,
 
-    // Secondary: Starling Sea Glass Teal
-    secondary = StarlingPineLight,
-    onSecondary = Color.White,
-    secondaryContainer = StarlingPineMedium,
-    onSecondaryContainer = Color(0xFFCCF9F4),
+    secondary = PaletteLavender,
+    onSecondary = PaletteForestInk,
+    secondaryContainer = Color(0xFF2C2F3D),
+    onSecondaryContainer = PaletteLavender,
 
-    // Backgrounds: Starling Deep Abyssal Slate
-    background = StarlingDarkBg,
-    onBackground = StarlingDarkTextPrimary,
+    tertiary = PaletteCoralPop,
+    onTertiary = PaletteForestInk,
 
-    // Surface (Cards): Starling Dark Card
-    surface = StarlingDarkCard,
-    onSurface = StarlingDarkTextPrimary,
-    surfaceVariant = StarlingDarkCardSurface,
-    onSurfaceVariant = StarlingDarkTextSecondary,
+    background = DarkPaperCanvas,
+    onBackground = Color(0xFFF7F5ED),
 
-    // Outline: Hairline teal-slate border
-    outline = StarlingDarkBorder,
+    surface = DarkPaperCard,
+    onSurface = Color(0xFFF7F5ED),
+    surfaceVariant = DarkPaperSurface,
+    onSurfaceVariant = Color(0xFFA6ABA0),
 
-    // Error
-    error = Color(0xFFF87171),
-    onError = Color.White
+    outline = DarkPaperBorder,
+
+    error = PaletteCoralPop,
+    onError = PaletteForestInk
 )
 
 private val LightColorScheme = lightColorScheme(
-    // Primary: Starling Deep Oceanic Pine (Starling Brand)
-    primary = StarlingPinePrimary,
-    onPrimary = Color.White,
-    primaryContainer = StarlingPineSubtle,
-    onPrimaryContainer = StarlingPinePrimary,
+    primary = PaletteForestInk,
+    onPrimary = PaletteWarmPaper,
+    primaryContainer = PaletteElectricLime,
+    onPrimaryContainer = PaletteForestInk,
 
-    // Secondary: Starling Oceanic Teal
-    secondary = StarlingPineMedium,
-    onSecondary = Color.White,
-    secondaryContainer = Color(0xFFCCF0F5),
-    onSecondaryContainer = StarlingPineMedium,
+    secondary = PaletteForestInk,
+    onSecondary = PaletteWarmPaper,
+    secondaryContainer = PaletteMintMist,
+    onSecondaryContainer = PaletteForestInk,
 
-    // Backgrounds: Wealthsimple Crisp Porcelain
-    background = WealthsimpleLightBg,
-    onBackground = WealthsimpleLightTextPrimary,
+    tertiary = PaletteLavender,
+    onTertiary = PaletteForestInk,
 
-    // Surface (Cards): Pure White Bento Tiles
-    surface = WealthsimpleLightCard,
-    onSurface = WealthsimpleLightTextPrimary,
-    surfaceVariant = Color(0xFFF1F5F9),
-    onSurfaceVariant = WealthsimpleLightTextSecondary,
+    background = PaletteWarmPaper,
+    onBackground = PaletteForestInk,
 
-    // Outline: Subtle hairline Slate 200
-    outline = WealthsimpleLightBorder,
+    surface = PaletteWhite,
+    onSurface = PaletteForestInk,
+    surfaceVariant = Color(0xFFEFECE1),
+    onSurfaceVariant = PaletteMutedText,
 
-    // Error
-    error = StarlingRedExpense,
-    onError = Color.White
+    outline = PaletteBorder,
+
+    error = PaletteCoralPop,
+    onError = PaletteWhite
 )
 
 @Composable

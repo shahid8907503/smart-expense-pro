@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smart.expense.data.repository.AuthRepository
 import com.smart.expense.security.GmailSmtpDispatcher
+import com.smart.expense.ui.theme.*
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 

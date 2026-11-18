@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.smart.expense.data.repository.AuthRepository
 import com.smart.expense.data.repository.ExpenseRepository
 import com.smart.expense.ui.components.EmailVerificationDialog
-import com.smart.expense.ui.theme.ForestGreenPrimary
+import com.smart.expense.ui.theme.*
 import kotlinx.coroutines.launch
 
 @Composable

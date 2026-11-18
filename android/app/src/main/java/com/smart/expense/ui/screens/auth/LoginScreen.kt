@@ -25,9 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.smart.expense.data.repository.AuthRepository
 import com.smart.expense.data.repository.ExpenseRepository
 import com.smart.expense.ui.components.TwoFactorAuthDialog
-import com.smart.expense.ui.theme.StarlingMintAccent
-import com.smart.expense.ui.theme.StarlingPineSubtle
-import com.smart.expense.ui.theme.StarlingPinePrimary
+import com.smart.expense.ui.theme.*
 import kotlinx.coroutines.launch
 
 @Composable
@@ -77,12 +75,12 @@ fun LoginScreen(
     ) {
         Spacer(modifier = Modifier.height(60.dp))
 
-        // Starling Neobank Brand Icon
+        // Playful Neo-Tactile Brand Icon
         Box(
             modifier = Modifier
                 .size(80.dp)
                 .clip(RoundedCornerShape(24.dp))
-                .background(Color(0xFF0B4E5A)),
+                .background(PaletteForestInk),
             contentAlignment = Alignment.Center
         ) {
             Box(
@@ -94,7 +92,7 @@ fun LoginScreen(
                         .offset(x = (-10).dp)
                         .size(32.dp)
                         .clip(CircleShape)
-                        .background(Color(0xFF00E676)) // Electric Mint solid ring
+                        .background(PaletteElectricLime)
                 )
                 Box(
                     modifier = Modifier
@@ -102,7 +100,7 @@ fun LoginScreen(
                         .size(32.dp)
                         .clip(CircleShape)
                         .background(Color.Transparent)
-                        .border(4.dp, Color.White, CircleShape)
+                        .border(4.dp, PaletteWarmPaper, CircleShape)
                 )
             }
         }

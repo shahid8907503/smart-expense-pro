@@ -3,161 +3,175 @@ package com.smart.expense.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // =========================================================================
-// STARLING BANK × WEALTHSIMPLE BENTO NEANK DESIGN SYSTEM
-// (Inspired by Starling Bank Oceanic Pine, Wealthsimple Bento, & Monzo Receipts)
+// PLAYFUL FINTECH × NEO-TACTILE × EDITORIAL MINIMALISM
+// Master Design System Palette
 // =========================================================================
 
-// Starling Signature Brand Colors (Deep Oceanic Pine & Sea Glass)
-val StarlingPinePrimary = Color(0xFF042B31)       // Deep Oceanic Pine 900 (Starling Signature)
-val StarlingPineDark = Color(0xFF021B1F)          // Abyssal Pine 950 (Hero Card base)
-val StarlingPineMedium = Color(0xFF0B4E5A)        // Rich Sea Pine 800
-val StarlingPineLight = Color(0xFF146A7A)         // Vibrant Oceanic Teal 600
-val StarlingPineSubtle = Color(0xFFE6F4F6)        // Ultra-soft Sea Pine pill container (50)
-val StarlingPineNavy = Color(0xFF06181C)          // Midnight Abyssal 1000
+// Primary Palette
+val PaletteElectricLime = Color(0xFFD9F36A) // #D9F36A (Hero Action, Highlights, Active States)
+val PaletteForestInk = Color(0xFF242923)    // #242923 (Primary Text, Strong Buttons, Borders)
+val PaletteWarmPaper = Color(0xFFF7F5ED)    // #F7F5ED (Main Canvas Background)
+val PaletteCoralPop = Color(0xFFFF9278)     // #FF9278 (Spending highlights, Expenses)
+val PaletteLavender = Color(0xFFB9ACFF)     // #B9ACFF (Split Bill, Social Features)
+val PaletteMintMist = Color(0xFFDCE9E0)     // #DCE9E0 (Savings, Income, Positive indicators)
+val PaletteWhite = Color(0xFFFFFFFF)        // #FFFFFF (Card Surfaces)
+val PaletteMutedText = Color(0xFF85877F)    // #85877F (Secondary Labels, Timestamps)
+val PaletteBorder = Color(0xFFDDDCD2)       // #DDDCD2 (Subtle Card Borders)
 
-// Starling & Wealthsimple Electric Accents
-val StarlingMintAccent = Color(0xFF00E676)        // Electric Jade / Mint Glow (Positive Cashflow & Badges)
-val StarlingMintContainer = Color(0xFFD1FAE5)     // Soft Jade Pill
-val StarlingMintDark = Color(0xFF059669)          // Forest Jade 600
-
-// Secondary Accents (Solar Amber & Gold)
-val StarlingSolarAmber = Color(0xFFF59E0B)        // Solar Amber 500 (Warnings & Savings Badges)
-val StarlingSolarLight = Color(0xFFFDE68A)        // Soft Buttercup 200
-val StarlingSolarContainer = Color(0xFFFEF3C7)    // Translucent Butter Container
-
-// Financial Semantic Indicators
-val StarlingGreenIncome = Color(0xFF10B981)       // Vibrant Jade (Positive Cashflow)
-val StarlingGreenContainer = Color(0xFFD1FAE5)    // Soft Jade Pill
-val StarlingRedExpense = Color(0xFFEF4444)        // Crisp Coral Red (Expenses)
-val StarlingRedContainer = Color(0xFFFEE2E2)      // Soft Coral Pill
-val StarlingWarningAmber = Color(0xFFF59E0B)      // Warning Amber
-
-// Light Mode Canvas (Wealthsimple Crisp Porcelain & Bento Pure White)
-val WealthsimpleLightBg = Color(0xFFF4F7F8)       // Ultra-crisp porcelain canvas (Low Eye Fatigue)
-val WealthsimpleLightCard = Color(0xFFFFFFFF)     // Pure white bento card surface
-val WealthsimpleLightBorder = Color(0xFFE2E8F0)   // Subtle 1px hairline border (Slate 200)
-val WealthsimpleLightTextPrimary = Color(0xFF0A1B24) // Deep Obsidian Slate text (Slate 900)
-val WealthsimpleLightTextSecondary = Color(0xFF5A7184) // Soft Slate 500
-val WealthsimpleLightTextMuted = Color(0xFF94A3B8)// Slate 400 muted
-
-// Dark Mode Canvas (Starling Deep Abyssal Slate - Low Glare)
-val StarlingDarkBg = Color(0xFF061014)            // Deep Abyssal Slate Canvas
-val StarlingDarkCard = Color(0xFF0D1C22)          // Matte Abyssal Card surface
-val StarlingDarkCardSurface = Color(0xFF152A33)   // Raised Bento tile
-val StarlingDarkBorder = Color(0xFF1E3A46)        // Hairline teal-slate border
-val StarlingDarkTextPrimary = Color(0xFFF1F5F9)   // Crisp White
-val StarlingDarkTextSecondary = Color(0xFF8FA5B2) // Sea Glass Slate 400
+// Semantic Tactile & Surface Variants
+val TactileShadowDark = Color(0xFF242923)
+val TactileBorderStrong = Color(0xFF242923)
+val DarkPaperSurface = Color(0xFF1E221D)
+val DarkPaperCanvas = Color(0xFF151814)
+val DarkPaperCard = Color(0xFF1F241E)
+val DarkPaperBorder = Color(0xFF353D34)
 
 // =========================================================================
-// SYSTEM ALIASES FOR 100% BACKWARD COMPATIBILITY
+// 100% BACKWARD COMPATIBLE DESIGN ALIASES
 // =========================================================================
 
-// Coinpay aliases mapped to Starling/Wealthsimple tokens
-val CoinpayCobaltPrimary = StarlingPineLight
-val CoinpayCobaltDark = StarlingPinePrimary
-val CoinpayCobaltLight = Color(0xFF1DA1B5)
-val CoinpayCobaltSubtle = StarlingPineSubtle
-val CoinpayCobaltNavy = StarlingPineDark
+// Starling / Neobank Aliases
+val StarlingPinePrimary = PaletteForestInk
+val StarlingPineDark = PaletteForestInk
+val StarlingPineMedium = Color(0xFF333A31)
+val StarlingPineLight = PaletteForestInk
+val StarlingPineSubtle = PaletteMintMist
+val StarlingPineNavy = PaletteForestInk
 
-val CoinpaySolarYellow = StarlingSolarAmber
-val CoinpaySolarLight = StarlingSolarLight
-val CoinpaySolarContainer = StarlingSolarContainer
+val StarlingMintAccent = PaletteElectricLime
+val StarlingMintContainer = PaletteMintMist
+val StarlingMintDark = Color(0xFF2A5E3E)
 
-val CoinpayGreenIncome = StarlingGreenIncome
-val CoinpayGreenContainer = StarlingGreenContainer
-val CoinpayRedExpense = StarlingRedExpense
-val CoinpayRedContainer = StarlingRedContainer
-val CoinpayWarningAmber = StarlingWarningAmber
+val StarlingSolarAmber = PaletteElectricLime
+val StarlingSolarLight = Color(0xFFEEF9A6)
+val StarlingSolarContainer = Color(0xFFF4F8D3)
 
-val CoinpayLightBg = WealthsimpleLightBg
-val CoinpayLightCard = WealthsimpleLightCard
-val CoinpayLightBorder = WealthsimpleLightBorder
-val CoinpayLightTextPrimary = WealthsimpleLightTextPrimary
-val CoinpayLightTextSecondary = WealthsimpleLightTextSecondary
-val CoinpayLightTextMuted = WealthsimpleLightTextMuted
+val StarlingGreenIncome = Color(0xFF2E7D32)
+val StarlingGreenContainer = PaletteMintMist
+val StarlingRedExpense = PaletteCoralPop
+val StarlingRedContainer = Color(0xFFFFE5DF)
+val StarlingWarningAmber = Color(0xFFF59E0B)
 
-val CoinpayDarkBg = StarlingDarkBg
-val CoinpayDarkCard = StarlingDarkCard
-val CoinpayDarkCardSurface = StarlingDarkCardSurface
-val CoinpayDarkBorder = StarlingDarkBorder
-val CoinpayDarkTextPrimary = StarlingDarkTextPrimary
-val CoinpayDarkTextSecondary = StarlingDarkTextSecondary
+val WealthsimpleLightBg = PaletteWarmPaper
+val WealthsimpleLightCard = PaletteWhite
+val WealthsimpleLightBorder = PaletteBorder
+val WealthsimpleLightTextPrimary = PaletteForestInk
+val WealthsimpleLightTextSecondary = PaletteMutedText
+val WealthsimpleLightTextMuted = PaletteMutedText
+
+val StarlingDarkBg = DarkPaperCanvas
+val StarlingDarkCard = DarkPaperCard
+val StarlingDarkCardSurface = DarkPaperSurface
+val StarlingDarkBorder = DarkPaperBorder
+val StarlingDarkTextPrimary = Color(0xFFF5F4EE)
+val StarlingDarkTextSecondary = Color(0xFFA6ABA0)
+
+// Coinpay Aliases
+val CoinpayCobaltPrimary = PaletteForestInk
+val CoinpayCobaltDark = PaletteForestInk
+val CoinpayCobaltLight = PaletteForestInk
+val CoinpayCobaltSubtle = PaletteMintMist
+val CoinpayCobaltNavy = PaletteForestInk
+
+val CoinpaySolarYellow = PaletteElectricLime
+val CoinpaySolarLight = Color(0xFFEEF9A6)
+val CoinpaySolarContainer = Color(0xFFF4F8D3)
+
+val CoinpayGreenIncome = Color(0xFF2E7D32)
+val CoinpayGreenContainer = PaletteMintMist
+val CoinpayRedExpense = PaletteCoralPop
+val CoinpayRedContainer = Color(0xFFFFE5DF)
+val CoinpayWarningAmber = Color(0xFFF59E0B)
+
+val CoinpayLightBg = PaletteWarmPaper
+val CoinpayLightCard = PaletteWhite
+val CoinpayLightBorder = PaletteBorder
+val CoinpayLightTextPrimary = PaletteForestInk
+val CoinpayLightTextSecondary = PaletteMutedText
+val CoinpayLightTextMuted = PaletteMutedText
+
+val CoinpayDarkBg = DarkPaperCanvas
+val CoinpayDarkCard = DarkPaperCard
+val CoinpayDarkCardSurface = DarkPaperSurface
+val CoinpayDarkBorder = DarkPaperBorder
+val CoinpayDarkTextPrimary = Color(0xFFF5F4EE)
+val CoinpayDarkTextSecondary = Color(0xFFA6ABA0)
 
 // Generic Fintech Aliases
-val FintechMidnightBg = StarlingDarkBg
-val FintechSecondaryBg = StarlingDarkCard
-val FintechCardBg = StarlingDarkCard
-val FintechCardSurface = StarlingDarkCardSurface
-val FintechCardBorder = StarlingDarkBorder
-val FintechBorderGlow = Color(0x1A00E676)
+val FintechMidnightBg = DarkPaperCanvas
+val FintechSecondaryBg = DarkPaperCard
+val FintechCardBg = DarkPaperCard
+val FintechCardSurface = DarkPaperSurface
+val FintechCardBorder = DarkPaperBorder
+val FintechBorderGlow = Color(0x33D9F36A)
 
-val FintechElectricViolet = StarlingPineLight
-val FintechVioletLight = Color(0xFF1DA1B5)
-val FintechVioletDark = StarlingPinePrimary
-val FintechVioletContainer = StarlingPineSubtle
+val FintechElectricViolet = PaletteLavender
+val FintechVioletLight = PaletteLavender
+val FintechVioletDark = PaletteForestInk
+val FintechVioletContainer = Color(0xFFE9E5FF)
 
-val FintechCyan = Color(0xFF00E676)
-val FintechCyanLight = Color(0xFF34D399)
-val FintechCyanContainer = StarlingMintContainer
+val FintechCyan = PaletteElectricLime
+val FintechCyanLight = Color(0xFFE5F88D)
+val FintechCyanContainer = PaletteMintMist
 
-val FintechEmerald = StarlingGreenIncome
-val FintechEmeraldLight = Color(0xFF34D399)
-val FintechEmeraldContainer = StarlingGreenContainer
+val FintechEmerald = Color(0xFF2E7D32)
+val FintechEmeraldLight = Color(0xFF4CAF50)
+val FintechEmeraldContainer = PaletteMintMist
 
-val FintechAmber = StarlingSolarAmber
-val FintechAmberLight = StarlingSolarLight
-val FintechAmberContainer = StarlingSolarContainer
+val FintechAmber = PaletteElectricLime
+val FintechAmberLight = Color(0xFFEEF9A6)
+val FintechAmberContainer = Color(0xFFF4F8D3)
 
-val FintechCoral = StarlingRedExpense
-val FintechCoralLight = Color(0xFFF87171)
-val FintechCoralContainer = StarlingRedContainer
+val FintechCoral = PaletteCoralPop
+val FintechCoralLight = Color(0xFFFFB2A0)
+val FintechCoralContainer = Color(0xFFFFE5DF)
 
-val FintechTextPrimary = StarlingDarkTextPrimary
-val FintechTextSecondary = StarlingDarkTextSecondary
-val FintechTextMuted = Color(0xFF8FA5B2)
+val FintechTextPrimary = PaletteForestInk
+val FintechTextSecondary = PaletteMutedText
+val FintechTextMuted = PaletteMutedText
 
-val FintechLightBg = WealthsimpleLightBg
-val FintechLightCardBg = WealthsimpleLightCard
-val FintechLightCardBorder = WealthsimpleLightBorder
-val FintechLightTextPrimary = WealthsimpleLightTextPrimary
-val FintechLightTextSecondary = WealthsimpleLightTextSecondary
-val FintechLightViolet = StarlingPineMedium
-val FintechLightVioletContainer = StarlingPineSubtle
-val FintechLightCyan = StarlingPineLight
+val FintechLightBg = PaletteWarmPaper
+val FintechLightCardBg = PaletteWhite
+val FintechLightCardBorder = PaletteBorder
+val FintechLightTextPrimary = PaletteForestInk
+val FintechLightTextSecondary = PaletteMutedText
+val FintechLightViolet = PaletteLavender
+val FintechLightVioletContainer = Color(0xFFE9E5FF)
+val FintechLightCyan = PaletteElectricLime
 
-val ForestGreenPrimary = StarlingPinePrimary
-val ForestGreenLight = StarlingPineLight
-val ForestGreenContainer = StarlingPineSubtle
-val EmeraldAccent = StarlingMintAccent
+val ForestGreenPrimary = PaletteForestInk
+val ForestGreenLight = PaletteForestInk
+val ForestGreenContainer = PaletteMintMist
+val EmeraldAccent = PaletteElectricLime
 
-val WarmOffWhiteBg = WealthsimpleLightBg
-val PureWhiteCard = WealthsimpleLightCard
-val CardBorderColor = WealthsimpleLightBorder
-val CharcoalTextPrimary = WealthsimpleLightTextPrimary
-val MutedGreySecondary = WealthsimpleLightTextSecondary
+val WarmOffWhiteBg = PaletteWarmPaper
+val PureWhiteCard = PaletteWhite
+val CardBorderColor = PaletteBorder
+val CharcoalTextPrimary = PaletteForestInk
+val MutedGreySecondary = PaletteMutedText
 
-val PositiveIncomeGreen = StarlingGreenIncome
-val PositiveIncomeBg = StarlingGreenContainer
-val ExpenseMutedRed = StarlingRedExpense
-val ExpenseMutedRedBg = StarlingRedContainer
-val WarningAmber = StarlingSolarAmber
-val WarningAmberBg = StarlingSolarContainer
+val PositiveIncomeGreen = Color(0xFF2E7D32)
+val PositiveIncomeBg = PaletteMintMist
+val ExpenseMutedRed = PaletteCoralPop
+val ExpenseMutedRedBg = Color(0xFFFFE5DF)
+val WarningAmber = Color(0xFFF59E0B)
+val WarningAmberBg = Color(0xFFFEF3C7)
 
-val DarkBg = StarlingDarkBg
-val DarkCardBg = StarlingDarkCard
-val DarkCardBorder = StarlingDarkBorder
-val DarkTextPrimary = StarlingDarkTextPrimary
-val DarkTextSecondary = StarlingDarkTextSecondary
-val DarkPrimary = StarlingPineLight
-val DarkPrimaryContainer = StarlingPineDark
+val DarkBg = DarkPaperCanvas
+val DarkCardBg = DarkPaperCard
+val DarkCardBorder = DarkPaperBorder
+val DarkTextPrimary = Color(0xFFF5F4EE)
+val DarkTextSecondary = Color(0xFFA6ABA0)
+val DarkPrimary = PaletteElectricLime
+val DarkPrimaryContainer = DarkPaperSurface
 
-// Category Pastel Tones (Monzo / Starling Rounded Squircle Badges)
-val CategoryFood = Color(0xFFF97316)          // Warm Tangerine
-val CategoryTravel = Color(0xFF0EA5E9)        // Sea Cyan
-val CategoryShopping = Color(0xFFF59E0B)      // Warm Amber
-val CategoryBills = Color(0xFF8B5CF6)         // Soft Violet
-val CategoryHealth = Color(0xFFEC4899)        // Rose Red
-val CategoryEducation = Color(0xFF10B981)     // Mint Jade
-val CategoryEntertainment = Color(0xFF6366F1) // Indigo
-val CategoryRent = Color(0xFF64748B)          // Cool Slate
-val CategoryOther = Color(0xFF14B8A6)         // Teal
+// Category Palette (Neo-Tactile Badges)
+val CategoryFood = Color(0xFFFF8A65)         // Warm Terracotta / Coral
+val CategoryTravel = Color(0xFF64B5F6)       // Sky Blue
+val CategoryShopping = Color(0xFFFFB74D)     // Warm Honey
+val CategoryBills = PaletteLavender          // Tactile Lavender
+val CategoryHealth = Color(0xFFE57373)       // Soft Rose
+val CategoryEducation = Color(0xFF81C784)    // Mint Leaf
+val CategoryEntertainment = PaletteLavender  // Playful Lilac
+val CategoryRent = PaletteForestInk          // Forest Ink
+val CategoryOther = Color(0xFF4DB6AC)        // Sea Foam
