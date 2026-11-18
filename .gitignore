@@ -55,3 +55,12 @@ java-backend/data/
 .DS_Store
 Thumbs.db
 
+# Private Notes & Q&A (Never upload to Git)
+*Interview*
+*QUESTION*
+*CheatSheet*
+*Master*
+*.docx
+*.pdf
+
+
