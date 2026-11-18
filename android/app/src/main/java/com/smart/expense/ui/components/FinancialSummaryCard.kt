@@ -4,6 +4,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -19,7 +20,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,12 +32,12 @@ import androidx.compose.ui.unit.sp
 import com.smart.expense.ui.theme.*
 
 /**
- * PLAYFUL FINTECH × NEO-TACTILE FINANCIAL HERO CARD
- * - Physical Tactile Depth (Forest Ink surface with Electric Lime accents)
+ * PLAYFUL FINTECH × NEO-TACTILE FINANCIAL HERO CARD WITH 3D TILT PHYSICS
+ * - Pure Native 3D Perspective Tilt (Touch drag tilts the card in 3D space)
+ * - Spring Physics Deceleration (wobbles and bounces back on release)
+ * - Dynamic Specular Glare that moves with the 3D angle
  * - Large tabular numerals for immediate financial clarity
  * - Interactive Privacy Eye Toggle
- * - Dual-card insight indicators: Income (Mint Mist) vs Expenses (Coral Pop)
- * - Visual Cashflow Retention Progress Indicator
  */
 @Composable
 fun FinancialSummaryCard(
@@ -48,6 +53,28 @@ fun FinancialSummaryCard(
 
     var isBalanceHidden by remember { mutableStateOf(false) }
 
+    // 3D Tilt Angles (X and Y axis)
+    var tiltX by remember { mutableFloatStateOf(0f) }
+    var tiltY by remember { mutableFloatStateOf(0f) }
+
+    // Bouncy Spring Physics on release (CRED / Apple Card style)
+    val animatedTiltX by animateFloatAsState(
+        targetValue = tiltX,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "card_tilt_x"
+    )
+    val animatedTiltY by animateFloatAsState(
+        targetValue = tiltY,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "card_tilt_y"
+    )
+
     val animatedBalance by animateFloatAsState(
         targetValue = balance.toFloat(),
         animationSpec = tween(durationMillis = 850, easing = FastOutSlowInEasing),
@@ -58,11 +85,37 @@ fun FinancialSummaryCard(
     val heroBg = if (isDark) DarkPaperCard else PaletteForestInk
     val heroBorder = if (isDark) DarkPaperBorder else PaletteForestInk
 
-    // Physical Tactile Shadow Offset Layering
+    // Physical Tactile Shadow Offset Layering with 3D Graphics Layer
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(bottom = 4.dp)
+            .padding(bottom = 6.dp)
+            .pointerInput(Unit) {
+                detectDragGestures(
+                    onDrag = { change, _ ->
+                        change.consume()
+                        val w = size.width.toFloat().coerceAtLeast(1f)
+                        val h = size.height.toFloat().coerceAtLeast(1f)
+                        val px = change.position.x.coerceIn(0f, w)
+                        val py = change.position.y.coerceIn(0f, h)
+                        tiltX = -((py - h / 2f) / (h / 2f)) * 14f
+                        tiltY = ((px - w / 2f) / (w / 2f)) * 14f
+                    },
+                    onDragEnd = {
+                        tiltX = 0f
+                        tiltY = 0f
+                    },
+                    onDragCancel = {
+                        tiltX = 0f
+                        tiltY = 0f
+                    }
+                )
+            }
+            .graphicsLayer {
+                rotationX = animatedTiltX
+                rotationY = animatedTiltY
+                cameraDistance = 16f * density
+            }
     ) {
         // Physical tactile back-shadow (Forest Ink 3.5dp offset)
         Box(
@@ -382,6 +435,27 @@ fun FinancialSummaryCard(
                     }
                 }
             }
+
+            // Dynamic 3D Specular Glare Sheen Overlay
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clip(RoundedCornerShape(26.dp))
+                    .background(
+                        Brush.linearGradient(
+                            colors = listOf(
+                                Color.White.copy(alpha = 0.10f),
+                                Color.Transparent,
+                                Color.White.copy(alpha = 0.04f)
+                            ),
+                            start = Offset(
+                                x = (1f + animatedTiltY / 14f) * 150f,
+                                y = (1f + animatedTiltX / 14f) * 150f
+                            ),
+                            end = Offset(x = 800f, y = 800f)
+                        )
+                    )
+            )
         }
     }
 }

@@ -1,3 +1,4 @@
+
 package com.smart.expense.ui.screens.home
 
 import androidx.compose.animation.*
@@ -353,6 +354,128 @@ fun HomeScreen(
                     totalExpense = totalExpense * curr.exchangeRateFromInr,
                     currencySymbol = curr.symbol
                 )
+            }
+
+            // =================================================================
+            // 2.5. 3D INTERACTIVE SAVINGS VAULT & COIN WIDGET
+            // =================================================================
+            item {
+                Surface(
+                    shape = RoundedCornerShape(22.dp),
+                    color = MaterialTheme.colorScheme.surface,
+                    border = androidx.compose.foundation.BorderStroke(1.2.dp, PaletteBorder),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 18.dp, vertical = 14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(7.dp)
+                                        .clip(CircleShape)
+                                        .background(PaletteElectricLime)
+                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    text = "3D SAVINGS VAULT",
+                                    fontSize = 10.5.sp,
+                                    letterSpacing = 1.1.sp,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = "Tap coin to flip in 3D",
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Bold
+                                ),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            val curr = CurrencyManager.getCurrency(user.preferredCurrency)
+                            Text(
+                                text = "Current Net: ${curr.symbol}${String.format(java.util.Locale.US, "%,.0f", (totalIncome - totalExpense).coerceAtLeast(0.0))}",
+                                fontSize = 12.sp,
+                                color = PaletteMutedText
+                            )
+                        }
+
+                        // The Pure 3D Levitating & Spinning Coin
+                        Interactive3DCoin(
+                            currencySymbol = CurrencyManager.getCurrency(user.preferredCurrency).symbol,
+                            onCoinTap = { showSavingsGoalsDialog = true }
+                        )
+                    }
+                }
+            }
+
+            // =================================================================
+            // 2.5. 3D INTERACTIVE SAVINGS VAULT & COIN WIDGET
+            // =================================================================
+            item {
+                Surface(
+                    shape = RoundedCornerShape(22.dp),
+                    color = MaterialTheme.colorScheme.surface,
+                    border = androidx.compose.foundation.BorderStroke(1.2.dp, PaletteBorder),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 18.dp, vertical = 14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(7.dp)
+                                        .clip(CircleShape)
+                                        .background(PaletteElectricLime)
+                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    text = "3D SAVINGS VAULT",
+                                    fontSize = 10.5.sp,
+                                    letterSpacing = 1.1.sp,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = "Tap coin to flip in 3D",
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Bold
+                                ),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            val curr = CurrencyManager.getCurrency(user.preferredCurrency)
+                            Text(
+                                text = "Current Net: ${curr.symbol}${String.format(java.util.Locale.US, "%,.0f", (totalIncome - totalExpense).coerceAtLeast(0.0))}",
+                                fontSize = 12.sp,
+                                color = PaletteMutedText
+                            )
+                        }
+
+                        // The Pure 3D Levitating & Spinning Coin
+                        Interactive3DCoin(
+                            currencySymbol = CurrencyManager.getCurrency(user.preferredCurrency).symbol,
+                            onCoinTap = { showSavingsGoalsDialog = true }
+                        )
+                    }
+                }
             }
 
             // =================================================================
