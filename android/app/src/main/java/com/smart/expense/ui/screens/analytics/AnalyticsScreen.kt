@@ -2,6 +2,7 @@ package com.smart.expense.ui.screens.analytics
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -96,6 +97,10 @@ fun AnalyticsScreen(
     val totalExpense = allTransactions.filter { it.type == "expense" }.sumOf { it.amount }
     val savingsRate = if (totalIncome > 0) (((totalIncome - totalExpense) / totalIncome) * 100).toInt() else 0
 
+    // Wealthsimple Time Period Filter State
+    val timePeriods = listOf("1D", "1W", "1M", "6M", "1Y", "ALL")
+    var selectedPeriod by remember { mutableStateOf("1M") }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
@@ -169,6 +174,39 @@ fun AnalyticsScreen(
         ) {
             Spacer(modifier = Modifier.height(2.dp))
 
+            // Wealthsimple Time Period Filter Chips (1D / 1W / 1M / 6M / 1Y / ALL)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                timePeriods.forEach { period ->
+                    val isSelected = period == selectedPeriod
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(
+                                if (isSelected) StarlingPinePrimary
+                                else MaterialTheme.colorScheme.surface
+                            )
+                            .border(
+                                1.dp,
+                                if (isSelected) StarlingPinePrimary else MaterialTheme.colorScheme.outline,
+                                RoundedCornerShape(20.dp)
+                            )
+                            .clickable { selectedPeriod = period }
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = period,
+                            fontSize = 12.sp,
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                            color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+
             // 1. Metric Trio Cards (Today, Week, Month)
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -177,19 +215,19 @@ fun AnalyticsScreen(
                 FintechMetricPill(
                     label = "TODAY",
                     amount = "${curr.symbol}${String.format(Locale.US, "%,.0f", todaySpending)}",
-                    accentColor = FintechCyan,
+                    accentColor = StarlingMintAccent,
                     modifier = Modifier.weight(1f)
                 )
                 FintechMetricPill(
                     label = "7 DAYS",
                     amount = "${curr.symbol}${String.format(Locale.US, "%,.0f", weekSpending)}",
-                    accentColor = FintechElectricViolet,
+                    accentColor = StarlingPineLight,
                     modifier = Modifier.weight(1f)
                 )
                 FintechMetricPill(
                     label = "THIS MONTH",
                     amount = "${curr.symbol}${String.format(Locale.US, "%,.0f", monthSpending)}",
-                    accentColor = FintechCoral,
+                    accentColor = StarlingRedExpense,
                     modifier = Modifier.weight(1f)
                 )
             }

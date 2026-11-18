@@ -21,8 +21,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.smart.expense.ui.theme.CoinpayCobaltPrimary
-import com.smart.expense.ui.theme.CoinpaySolarYellow
+import com.smart.expense.ui.theme.StarlingMintAccent
+import com.smart.expense.ui.theme.StarlingRedExpense
 
 data class MonthlyTrendItem(
     val monthName: String,
@@ -52,13 +52,13 @@ fun MonthlyTrendChart(
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(CoinpayCobaltPrimary))
+            Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(StarlingMintAccent))
             Spacer(modifier = Modifier.width(4.dp))
             Text("Income", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(CoinpaySolarYellow))
+            Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(StarlingRedExpense))
             Spacer(modifier = Modifier.width(4.dp))
             Text("Expense", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
@@ -78,25 +78,25 @@ fun MonthlyTrendChart(
                     val item = trends[i]
                     val groupCenterX = (i * groupWidth) + (groupWidth / 2f)
 
-                    // Income bar (Coinpay Cobalt Blue)
+                    // Income bar (Starling Electric Mint)
                     val incomeHeight = (item.income / maxAmount).toFloat() * chartHeight * animatedProgress.value
                     val incomeX = groupCenterX - barWidth - (barGap / 2f)
                     val incomeY = chartHeight - incomeHeight
 
                     drawRoundRect(
-                        color = CoinpayCobaltPrimary,
+                        color = StarlingMintAccent,
                         topLeft = Offset(incomeX, incomeY),
                         size = Size(barWidth, incomeHeight),
                         cornerRadius = CornerRadius(barWidth / 2f, barWidth / 2f)
                     )
 
-                    // Expense bar (Coinpay Solar Yellow)
+                    // Expense bar (Starling Coral Red)
                     val expenseHeight = (item.expense / maxAmount).toFloat() * chartHeight * animatedProgress.value
                     val expenseX = groupCenterX + (barGap / 2f)
                     val expenseY = chartHeight - expenseHeight
 
                     drawRoundRect(
-                        color = CoinpaySolarYellow,
+                        color = StarlingRedExpense,
                         topLeft = Offset(expenseX, expenseY),
                         size = Size(barWidth, expenseHeight),
                         cornerRadius = CornerRadius(barWidth / 2f, barWidth / 2f)

@@ -25,9 +25,9 @@ import androidx.compose.ui.unit.sp
 import com.smart.expense.data.repository.AuthRepository
 import com.smart.expense.data.repository.ExpenseRepository
 import com.smart.expense.ui.components.TwoFactorAuthDialog
-import com.smart.expense.ui.theme.EmeraldAccent
-import com.smart.expense.ui.theme.ForestGreenContainer
-import com.smart.expense.ui.theme.ForestGreenPrimary
+import com.smart.expense.ui.theme.StarlingMintAccent
+import com.smart.expense.ui.theme.StarlingPineSubtle
+import com.smart.expense.ui.theme.StarlingPinePrimary
 import kotlinx.coroutines.launch
 
 @Composable
@@ -77,32 +77,32 @@ fun LoginScreen(
     ) {
         Spacer(modifier = Modifier.height(60.dp))
 
-        // Coinpay Brand Icon (Interlocking Geometric Symbol)
+        // Starling Neobank Brand Icon
         Box(
             modifier = Modifier
-                .size(72.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .background(MaterialTheme.colorScheme.primaryContainer),
+                .size(80.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .background(Color(0xFF0B4E5A)),
             contentAlignment = Alignment.Center
         ) {
             Box(
-                modifier = Modifier.size(44.dp),
+                modifier = Modifier.size(50.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Box(
                     modifier = Modifier
-                        .offset(x = (-9).dp)
-                        .size(28.dp)
+                        .offset(x = (-10).dp)
+                        .size(32.dp)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary)
+                        .background(Color(0xFF00E676)) // Electric Mint solid ring
                 )
                 Box(
                     modifier = Modifier
-                        .offset(x = 9.dp)
-                        .size(28.dp)
+                        .offset(x = 10.dp)
+                        .size(32.dp)
                         .clip(CircleShape)
                         .background(Color.Transparent)
-                        .border(3.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                        .border(4.dp, Color.White, CircleShape)
                 )
             }
         }
@@ -132,7 +132,7 @@ fun LoginScreen(
             onValueChange = { email = it; errorMessage = null },
             label = { Text("Email address") },
             leadingIcon = {
-                Icon(Icons.Default.Email, contentDescription = null, tint = ForestGreenPrimary)
+                Icon(Icons.Default.Email, contentDescription = null, tint = StarlingPinePrimary)
             },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
@@ -148,7 +148,7 @@ fun LoginScreen(
             onValueChange = { password = it; errorMessage = null },
             label = { Text("Password") },
             leadingIcon = {
-                Icon(Icons.Default.Lock, contentDescription = null, tint = ForestGreenPrimary)
+                Icon(Icons.Default.Lock, contentDescription = null, tint = StarlingPinePrimary)
             },
             trailingIcon = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -174,7 +174,7 @@ fun LoginScreen(
                 Text(
                     text = "Forgot password?",
                     style = MaterialTheme.typography.bodySmall,
-                    color = ForestGreenPrimary,
+                    color = StarlingPinePrimary,
                     fontWeight = FontWeight.SemiBold
                 )
             }
@@ -195,9 +195,9 @@ fun LoginScreen(
                         errorMessage = "Email verified! You can now tap Sign In."
                     }
                 ) {
-                    Icon(Icons.Default.Verified, contentDescription = null, tint = ForestGreenPrimary, modifier = Modifier.size(16.dp))
+                    Icon(Icons.Default.Verified, contentDescription = null, tint = StarlingMintAccent, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Click to Verify Email Now", fontSize = 12.sp, color = ForestGreenPrimary, fontWeight = FontWeight.Bold)
+                    Text("Click to Verify Email Now", fontSize = 12.sp, color = StarlingMintAccent, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -298,7 +298,7 @@ fun LoginScreen(
             Icon(
                 imageVector = Icons.Default.Security,
                 contentDescription = null,
-                tint = EmeraldAccent,
+                tint = StarlingMintAccent,
                 modifier = Modifier.size(16.dp)
             )
             Spacer(modifier = Modifier.width(6.dp))
@@ -326,7 +326,7 @@ fun LoginScreen(
                 Text(
                     text = "Register",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = ForestGreenPrimary,
+                    color = StarlingPinePrimary,
                     fontWeight = FontWeight.Bold
                 )
             }

@@ -230,11 +230,11 @@ fun HomeScreen(
             AdBannerView()
         },
         floatingActionButton = {
-            // Floating Action Button with Electric Violet gradient & glow
+            // Starling Mint Floating Action Button
             FloatingActionButton(
                 onClick = onNavigateToAddManual,
-                containerColor = FintechElectricViolet,
-                contentColor = Color.White,
+                containerColor = StarlingMintAccent,
+                contentColor = Color(0xFF021B1F),
                 shape = CircleShape,
                 elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp)
             ) {
@@ -437,13 +437,13 @@ fun HomeScreen(
                     val isDarkTheme = isSystemInDarkTheme()
                     val voiceBannerColors = if (isDarkTheme) {
                         listOf(
-                            Color(0xFF1E2438),
-                            Color(0xFF141724)
+                            Color(0xFF063B44), // Starling Dark Sea Pine
+                            Color(0xFF021B1F)  // Abyssal Pine
                         )
                     } else {
                         listOf(
-                            Color(0xFF4338CA),
-                            Color(0xFF312E81)
+                            Color(0xFF0A4753), // Starling Oceanic Pine
+                            Color(0xFF03282E)  // Deep Oceanic Pine
                         )
                     }
 

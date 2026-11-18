@@ -6,9 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smart.expense.data.repository.AuthRepository
 import com.smart.expense.data.repository.ExpenseRepository
-import com.smart.expense.ui.theme.EmeraldAccent
-import com.smart.expense.ui.theme.ForestGreenPrimary
+import com.smart.expense.ui.theme.StarlingMintAccent
 import kotlinx.coroutines.delay
 
 @Composable
@@ -58,11 +55,11 @@ fun SplashScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                androidx.compose.ui.graphics.Brush.verticalGradient(
+                Brush.verticalGradient(
                     listOf(
-                        Color(0xFF1E40AF), // Deep Royal Navy
-                        Color(0xFF1D4ED8), // Royal Cobalt 700
-                        Color(0xFF2563EB)  // Electric Cobalt 600
+                        Color(0xFF021B1F), // Abyssal Sea Pine
+                        Color(0xFF063B44), // Deep Starling Pine
+                        Color(0xFF0C4D59)  // Oceanic Teal 800
                     )
                 )
             ),
@@ -72,42 +69,41 @@ fun SplashScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.scale(scale.value)
         ) {
-            // Coinpay Minimalist Overlapping Geometric Rings Logo
+            // Starling Minimalist Overlapping Geometric Rings Emblem
             Box(
-                modifier = Modifier
-                    .size(80.dp),
+                modifier = Modifier.size(88.dp),
                 contentAlignment = Alignment.Center
             ) {
-                // Left Ring
+                // Left Solid Sea Glass Ring
                 Box(
                     modifier = Modifier
                         .offset(x = (-16).dp)
-                        .size(52.dp)
+                        .size(54.dp)
                         .clip(CircleShape)
-                        .background(Color.White)
+                        .background(Color(0xFF00E676)) // Starling Electric Mint
                 )
-                // Right Interlocking Ring
+                // Right Interlocking Ring with Hairline Sheen
                 Box(
                     modifier = Modifier
                         .offset(x = 16.dp)
-                        .size(52.dp)
+                        .size(54.dp)
                         .clip(CircleShape)
                         .background(Color.Transparent)
                         .border(
-                            width = 6.dp,
+                            width = 5.dp,
                             color = Color.White,
                             shape = CircleShape
                         )
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             Text(
-                text = "SmartExpense",
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 32.sp,
+                text = "Smart Expense Pro",
+                style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
+                    fontSize = 28.sp,
                     letterSpacing = (-0.5).sp
                 ),
                 color = Color.White
@@ -115,16 +111,33 @@ fun SplashScreen(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Text(
-                text = "Next-Gen Fintech & Expense Intelligence",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontSize = 13.5.sp,
-                    fontWeight = FontWeight.Medium,
-                    letterSpacing = 0.2.sp
-                ),
-                color = Color.White.copy(alpha = 0.82f)
-            )
+            // Subtext Pill Badge
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color(0x2EFFFFFF))
+                    .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(12.dp))
+                    .padding(horizontal = 14.dp, vertical = 5.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(6.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFF00E676))
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "NEOBANK SPACES EDITION",
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            letterSpacing = 1.3.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 10.sp
+                        ),
+                        color = Color(0xFFE2E8F0)
+                    )
+                }
+            }
         }
     }
 }
-
